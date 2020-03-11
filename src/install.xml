@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This file is part of "Sort By Newest" project and subject to the terms
+and conditions defined in file "LICENSE.txt", which is part of this source
+code package and also available on the project page: https://git.io/Jv6f1.
+-->
+
+<modification>
+	<name>[underr] Sort By Newest</name>
+	<code>sort-by-newest</code>
+	<version>1.2.0</version>
+	<author>Andrii Burkatskyi aka underr</author>
+	<link>https://git.io/Jv6f1</link>
+
+    <file path="catalog/controller/product/{category,manufacturer,search,special}.php" error="log">
+        <operation error="log">
+            <search><![CDATA[$sort = 'p.sort_order';]]></search>
+            <add position="replace"><![CDATA[$sort = 'p.date_added';]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[p.sort_order-ASC]]></search>
+            <add position="replace"><![CDATA[p.date_added-DESC]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[p.sort_order&order=ASC]]></search>
+            <add position="replace"><![CDATA[p.date_added&order=DESC]]></add>
+        </operation>
+
+        <operation error="log">
+            <search><![CDATA[$order = 'ASC';]]></search>
+            <add position="replace"><![CDATA[$order = 'DESC';]]></add>
+        </operation>
+    </file>
+</modification>
