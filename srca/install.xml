@@ -13,7 +13,7 @@ code package and also available on the project page: https://git.io/Jv6f1.
 	<author>Andrii Burkatskyi aka underr</author>
 	<link>https://git.io/Jv6f1</link>
 
-    <file path="catalog/controller/product/{category,manufacturer,search,special}.php" error="log">
+    <file path="catalog/controller/product/category.php" error="log">
         <operation error="log">
             <search><![CDATA['text'  => $this->language->get('text_model_asc'),]]></search>
             <add position="before"><![CDATA[				'text'  => $this->language->get('text_date_added_desc'),
@@ -24,6 +24,43 @@ code package and also available on the project page: https://git.io/Jv6f1.
 			$data['sorts'][] = array(]]></add>
         </operation>
     </file>
+
+    <file path="catalog/controller/product/manufacturer.php" error="log">
+        <operation error="log">
+            <search><![CDATA['text'  => $this->language->get('text_model_asc'),]]></search>
+            <add position="before"><![CDATA[				'text'  => $this->language->get('text_date_added_desc'),
+				'value' => 'p.date_added-DESC',
+				'href'  => $this->url->link('product/manufacturer/info', 'manufacturer_id=' . $this->request->get['manufacturer_id'] . '&sort=p.date_added&order=DESC' . $url)
+			);
+
+			$data['sorts'][] = array(]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/search.php" error="log">
+        <operation error="log">
+            <search><![CDATA['text'  => $this->language->get('text_model_asc'),]]></search>
+            <add position="before"><![CDATA[				'text'  => $this->language->get('text_date_added_desc'),
+				'value' => 'p.date_added-DESC',
+				'href'  => $this->url->link('product/search', 'sort=p.date_added&order=DESC' . $url)
+			);
+
+			$data['sorts'][] = array(]]></add>
+        </operation>
+    </file>
+
+    <file path="catalog/controller/product/special.php" error="log">
+        <operation error="log">
+            <search><![CDATA['text'  => $this->language->get('text_model_asc'),]]></search>
+            <add position="before"><![CDATA[			'text'  => $this->language->get('text_date_added_desc'),
+			'value' => 'p.date_added-DESC',
+			'href'  => $this->url->link('product/special', 'sort=p.date_added&order=DESC' . $url)
+		);
+
+		$data['sorts'][] = array(]]></add>
+        </operation>
+    </file>
+
     <file path="catalog/language/*/product/{category,manufacturer,search,special}.php" error="log">
         <operation error="log">
             <search><![CDATA[$_['text_model_asc']]]></search>
