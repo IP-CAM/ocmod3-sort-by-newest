@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+This file is part of "Sort By Newest" project and subject to the terms
+and conditions defined in file "LICENSE.txt", which is part of this source
+code package and also available on the project page: https://git.io/Jv6f1.
+-->
+
+<modification>
+	<name>[underr] Sort By Newest</name>
+	<code>sort-by-newest</code>
+	<version>1.2.0</version>
+	<author>Andrii Burkatskyi aka underr</author>
+	<link>https://git.io/Jv6f1</link>
+
+    <file path="catalog/controller/product/{category,manufacturer,search,special}.php" error="log">
+        <operation error="log">
+            <search><![CDATA['text'  => $this->language->get('text_model_asc'),]]></search>
+            <add position="before"><![CDATA[				'text'  => $this->language->get('text_date_added_desc'),
+				'value' => 'p.date_added-DESC',
+				'href'  => $this->url->link('product/category', 'path=' . $this->request->get['path'] . '&sort=p.date_added&order=DESC' . $url)
+			);
+
+			$data['sorts'][] = array(]]></add>
+        </operation>
+    </file>
+    <file path="catalog/language/*/product/{category,manufacturer,search,special}.php" error="log">
+        <operation error="log">
+            <search><![CDATA[$_['text_model_asc']]]></search>
+            <add position="before"><![CDATA[$_['text_date_added_desc'] = 'Date added (Newest)';]]></add>
+        </operation>
+    </file>
+</modification>

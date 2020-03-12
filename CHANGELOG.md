@@ -1,5 +1,9 @@
 # Change log
 
+## [2.0.0] - 2020-03-12:
+### Added
+- New extension that adds the sorting by date method instead of default method replacement
+
 ## [1.2.0] - 2020-03-11:
 ### Added
 - Sort by newest on Special and Search pages
